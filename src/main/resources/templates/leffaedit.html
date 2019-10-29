@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Leffa form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<body>
+	<h1>Edit Leffa</h1>
+	<form action="#" th:action="@{../save}"  th:object= ${leffa} method="post">
+	
+	<input type="hidden" th:field="*{id}" class="form-control"/>
+	<input type="text" th:field="*{title}" />
+	<input type="text" th:field="*{year}" />
+	<input type="text" th:field="*{director}" />
+	<input type="submit" class="btn btn-success" value="Save" />
+	<select id="studiolist" th:field="*{studio}" class="form-control">
+	<option th:each="studio: ${studios}" th:value="${studio.studioid}" th:text="${studio.name}"></option>
+	</select>
+	<select id="genrelist" th:field="*{genre}" class="form-control">
+	<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
+	</select>
+	</form>
+    
+</body>
+</html>

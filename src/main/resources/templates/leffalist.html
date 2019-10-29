@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Leffa</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	 $("#show").click(function(){
+		    $("a").show();
+		  });
+	$("#hide").click(function(){
+    $("a").hide();
+  });
+});
+</script>
+
+</head>
+<body>
+<div class="col-md-4">
+	<h1>Leffat</h1>
+	</div>
+	<div class="col-md-4">
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	</div>
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-danger"/>
+		</form>
+	</div>
+	<table class="table table-striped">
+		<tr>
+		<th>Id</th>
+		<th>Title</th>
+		<th>Year</th>
+		<th>Director</th>
+		<th>Studio</th>
+		<th>Genre</th>
+		<th sec:authorize="hasRole('ADMIN')"></th>
+		</tr>
+		
+		<tr th:each="leffa : ${leffat}">
+			<td th:text="${leffa.id}">id</td>
+			<td ><a th:text="${leffa.title}" th:href="@{/seeleffa/{id}(id=${leffa.id})}" ></a></td>
+			<td th:text="${leffa.year}">year</td>
+			<td th:text="${leffa.director}">director</td>
+			<td th:text="${leffa.studio.name}">studio</td>
+			<td th:text="${leffa.genre.name}">genre</td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteleffa/{id}(id=${leffa.id})}" class="btn btn-danger">Delete</a></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${leffa.id})}">Edit</a></td>
+			</tr>
+		</table>
+		<a  href="/newleffa" class="btn btn-success" sec:authorize="hasAuthority('ADMIN')">New Leffa</a>
+		
+		<button sec:authorize="hasAuthority('ADMIN')" id="hide">Hide</button>
+		<button sec:authorize="hasAuthority('ADMIN')" id="show">Show</button>
+	
+    
+</body>
+</html>
