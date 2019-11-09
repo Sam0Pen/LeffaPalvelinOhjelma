@@ -14,13 +14,15 @@
 	<input type="text" th:field="*{title}" />
 	<input type="text" th:field="*{year}" />
 	<input type="text" th:field="*{director}" />
-	<input type="submit" class="btn btn-success" value="Save" />
+	
 	<select id="studiolist" th:field="*{studio}" class="form-control">
 	<option th:each="studio: ${studios}" th:value="${studio.studioid}" th:text="${studio.name}"></option>
 	</select>
 	<select id="genrelist" th:field="*{genre}" class="form-control">
 	<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
 	</select>
+	<input type="text" th:field="*{poster}" />
+	<input type="submit" class="btn btn-success" value="Save" />
 	</form>
     
 </body>
