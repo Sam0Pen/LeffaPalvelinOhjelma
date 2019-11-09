@@ -97,7 +97,7 @@ public class LeffaController {
 
 	@RequestMapping(value = "/seeleffa/{id}", method = RequestMethod.GET)
 	public String seeLeffa(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("leffa", leffarepo.findById(id).);
+		model.addAttribute("leffa", leffarepo.findById(id).orElseGet(null));
 		model.addAttribute("genres", genrepo.findAll());
 		model.addAttribute("studios", studiorepo.findAll());
 		return "leffa";

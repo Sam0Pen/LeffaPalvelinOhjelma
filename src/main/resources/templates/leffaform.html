@@ -19,6 +19,7 @@
 	<p>Genre</p><select id="genrelist" th:field="*{genre}" class="form-control">
 	<option th:each="genre: ${genres}" th:value="${genre.genreid}" th:text="${genre.name}"></option>
 	</select>
+	<p>Poster: <input type="text" th:field="${leffa.poster}" /></p>
 	<div style="clear: both; display: block; height: 10px"></div>
 	
 	

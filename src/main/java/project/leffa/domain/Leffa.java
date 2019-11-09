@@ -17,6 +17,7 @@ public class Leffa {
 	private String title;
 	private int year;
 	private String director;
+	private String poster;
 	
 	@ManyToOne
 	
@@ -36,18 +37,20 @@ public class Leffa {
 		this.director = null;
 		this.studio = studio;
 		this.genre = genre;
+		this.poster = null;
 	}
 
 
-	public Leffa(String title, int year, String director, Studio studio, Genre genre) {
+	public Leffa(String title, int year, String director, Studio studio, Genre genre, String poster) {
 		super();
 		this.title = title;
 		this.year = year;
 		this.director = director;
 		this.studio = studio;
 		this.genre = genre;
+		this.poster = poster;
 	}
-	public Leffa(Long id, String title, int year, String director, Studio studio, Genre genre) {
+	public Leffa(Long id, String title, int year, String director, Studio studio, Genre genre, String poster) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -55,6 +58,7 @@ public class Leffa {
 		this.director = director;
 		this.studio = studio;
 		this.genre = genre;
+		this.poster = poster;
 	}
 
 
@@ -76,6 +80,9 @@ public class Leffa {
 	public String getDirector() {
 		return director;
 	}
+	public String getPoster() { 
+		return poster;
+	}
 
 
 	public void setId(Long id) {
@@ -96,6 +103,10 @@ public class Leffa {
 	public void setDirector(String director) {
 		this.director = director;
 	}
+	
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 	public Studio getStudio() {
 		return studio;
 	}
@@ -113,9 +124,9 @@ public class Leffa {
 	@Override
 	public String toString() {
 		if(this.studio !=null && this.genre !=null)
-		return "Leffa [id=" + id + ", title=" + title + ", year=" + year + ", director=" + director +this.getStudio() + this.getGenre() +"]";
+		return "Leffa [id=" + id + ", title=" + title + ", year=" + year + ", director=" + director +this.getStudio() + this.getGenre() +", poster=" + poster + "]";
 		else
-			return"Leffa [id="+ id +" title=" + title + ", year=" + year + ", director=" + director + "]";
+			return"Leffa [id="+ id +" title=" + title + ", year=" + year + ", director=" + director + ", poster=" + poster +"]";
 	}
 	
 	
